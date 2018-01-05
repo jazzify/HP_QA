@@ -10,7 +10,7 @@ __pycache__/
 urls.txt
 
 # VS Code
-.vs_code
+.vscode/
 
 # Distribution / packaging
 .Python
