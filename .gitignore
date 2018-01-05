@@ -6,6 +6,12 @@ __pycache__/
 # C extensions
 *.so
 
+# URLS
+urls.txt
+
+# VS Code
+.vs_code
+
 # Distribution / packaging
 .Python
 env/
