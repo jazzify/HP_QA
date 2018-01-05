@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from time import sleep
 from .driver import DRIVER
+from hillsqa.private_settings import HILLS
 
 U_T_O = set()
 
@@ -29,7 +30,7 @@ def fix_pg_title(link):
 
     for option in HP_LIST:
         if pg_title.endswith(option):
-            fixed_pg_title = pg_title.replace(option, "| Hill's Pet")
+            fixed_pg_title = pg_title.replace(option, HILLS)
             page_title_input.clear()
             page_title_input.send_keys(fixed_pg_title)
             break
@@ -60,7 +61,7 @@ def fix_nav_title(link, no_save=False):
             nav_title_input.send_keys(pg_title)
     else:
         print('FIXING Nav Title')
-        fixed_nav_title = pg_title.replace(" | Hill's Pet", '')
+        fixed_nav_title = pg_title.replace(HILLS, '')
         if nav_title != fixed_nav_title:
             nav_title_input.clear()
             nav_title_input.send_keys(fixed_nav_title)
