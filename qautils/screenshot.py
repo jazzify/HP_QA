@@ -1,5 +1,6 @@
 from io import BytesIO
 from PIL import Image
+from selenium.webdriver.common.action_chains import ActionChains
 
 def highlight(driver, url, new_url):
     """Highlights (blinks) a Selenium Webdriver element"""
@@ -17,7 +18,9 @@ def highlight(driver, url, new_url):
                 driver.execute_script("arguments[0].setAttribute('style', arguments[1]);", element, style)
             apply_style("background: #81D4FA; border: 2px solid #0277BD;")
 
-            driver.execute_script("window.scrollTo(0, 550);")
+            actions = ActionChains(driver)
+            actions.move_to_element(element).perform()
+            
             img = driver.get_screenshot_as_png()
             img = Image.open(BytesIO(img))
             img.show()
