@@ -12,6 +12,9 @@ urls.txt
 # VS Code
 .vscode/
 
+# Admin Settings
+hillsqa/
+
 # Distribution / packaging
 .Python
 env/
