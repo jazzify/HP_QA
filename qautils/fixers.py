@@ -18,7 +18,8 @@ HP_LIST = [ '| Hill´s Pet',   '| Hill´s Pet ',
             "- Hill's Pet",   "- Hill's Pet ",
             "- hillspet.lt",  "- hillspet.lt ",
             "| Hill's",       "| Hill's ",
-            "| Хиллс",        "| Хиллс "
+            "| Хиллс",        "| Хиллс ",
+            " | Hill’s Pet",  " | Hill’s Pet "
         ]
 
 def fix_pg_title(link):
