@@ -13,7 +13,7 @@ urls.txt
 .vscode/
 
 # Admin Settings
-hillsqa/
+hillsqa/private_settings.py
 
 # Distribution / packaging
 .Python
