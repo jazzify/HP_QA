@@ -19,7 +19,7 @@ with open('urls.txt', 'r') as urls_file:
 
     for url in URL_LIST:
         print('\n\nTesting url:', URL_LIST.index(url) + 1, 'of', len(URL_LIST))
-        print('UTO:', len(URLS_TO_OPEN), " , 404:", len(URLS_404))
+        print('UTO:', len(URLS_TO_OPEN.union(U_T_O)), " , 404:", len(URLS_404))
         new_url = PROPERTY_LINK + url.split(PROPERTY_LINK[0:42], 1)[1].replace('.html?wcmmode=disabled', '')
         prod_site = requests.get(new_url, auth=AUTH)
         prod_soup = BeautifulSoup(prod_site.text, 'html.parser')
@@ -48,8 +48,12 @@ with open('urls.txt', 'r') as urls_file:
                 print('PAGE TITLE NOT FOUND')
                 prod_site = requests.get(url, auth=AUTH)
                 prod_soup = BeautifulSoup(prod_site.text, 'html.parser')
-                heading_1 = prod_soup.h1.text
-                print(f"<h1> tag found: {heading_1}")
+                try:
+                    heading_1 = prod_soup.h1.text
+                    print(f"<h1> tag found: {heading_1}")
+                except AttributeError:
+                    print('NO <h1> tag in the site')
+
                 open_pg_title = input('Open and fix? (y/c/n): ')
                 if open_pg_title == 'y':
                     webbrowser.get(CHROME_EXE_PATH).open_new_tab(url)
