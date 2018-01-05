@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from selenium.webdriver.common.keys import Keys
-from hillsqa.settings import DRIVER, USER, PASSWORD
+from hillsqa.private_settings import DRIVER, USER, PASSWORD
 
 
 def start_driver():

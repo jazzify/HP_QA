@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from qautils.screenshot import highlight
 from qautils.driver import start_driver, DRIVER
 from qautils.fixers import fix_pg_title, fix_nav_title, U_T_O
-from hillsqa.settings import CHROME_EXE_PATH, HILLS, AUTH, PROPERTY_LINK, DOMAIN
+from hillsqa.private_settings import CHROME_EXE_PATH, HILLS, AUTH, PROPERTY_LINK, DOMAIN
 
 
 start_driver()
