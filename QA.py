@@ -4,12 +4,10 @@ import requests
 from bs4 import BeautifulSoup
 from qautils.screenshot import highlight
 from qautils.driver import start_driver, DRIVER
-from qautils.fixers import fix_pg_title, fix_nav_title, URLS_TO_OPEN
+from qautils.fixers import fix_pg_title, fix_nav_title, fix_no_pg_title, URLS_TO_OPEN
 from hillsqa.private_settings import CHROME_EXE_PATH, HILLS, AUTH, PROPERTY_LINK, DOMAIN
 
-
 start_driver()
-
 
 URLS_404 = set()
 
@@ -45,27 +43,7 @@ with open('urls.txt', 'r') as urls_file:
 
             # Page Title
             if pg_title is '':
-                print('PAGE TITLE NOT FOUND')
-                prod_site = requests.get(url, auth=AUTH)
-                prod_soup = BeautifulSoup(prod_site.text, 'html.parser')
-                try:
-                    heading_1 = prod_soup.h1.text
-                    print(f"<h1> tag found: {heading_1}")
-                except AttributeError:
-                    print('NO <h1> tag in the site')
-
-                open_pg_title = input('Open and fix? (y/c/n): ')
-                if open_pg_title == 'y':
-                    webbrowser.get(CHROME_EXE_PATH).open_new_tab(url)
-                    webbrowser.get(CHROME_EXE_PATH).open_new_tab(new_url)
-                elif open_pg_title == 'c':
-                    if DRIVER.current_url is not new_url:
-                        DRIVER.get(new_url)
-                    custom_pg_title = input('Please provide the page title: ')
-                    custom_pg_title += HILLS
-                    page_title_input = DRIVER.find_element_by_name('./pageTitle')
-                    page_title_input.send_keys(custom_pg_title)
-                    fix_nav_title(new_url)
+                fix_no_pg_title(new_url, url)
 
             elif (not pg_title.endswith(HILLS)) and (not pg_title.endswith(f'{HILLS} ')):
                 if DRIVER.current_url is not new_url:
