@@ -50,7 +50,7 @@ with open('urls.txt', 'r') as urls_file:
                     DRIVER.get(new_url)
                 fix_pg_title(new_url)
 
-            elif nav_title == '' or not nav_title in pg_title:
+            elif nav_title == '' or (nav_title != pg_title.replace(HILLS, '') and (not '/dog-breeds/' in url or '/cat-breeds/' in url)):
                 if DRIVER.current_url is not new_url:
                     DRIVER.get(new_url)
                 fix_nav_title(new_url)
