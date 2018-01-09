@@ -3,7 +3,7 @@ from time import sleep
 from .driver import DRIVER
 from hillsqa.private_settings import HILLS
 
-U_T_O = set()
+URLS_TO_OPEN = set()
 
 HP_LIST = [ '| Hill´s Pet',   '| Hill´s Pet ',
             '| Hill´s pet',   '| Hill´s pet ',
@@ -19,7 +19,9 @@ HP_LIST = [ '| Hill´s Pet',   '| Hill´s Pet ',
             "- hillspet.lt",  "- hillspet.lt ",
             "| Hill's",       "| Hill's ",
             "| Хиллс",        "| Хиллс ",
-            " | Hill’s Pet",  " | Hill’s Pet "
+            " | Hill’s Pet",  " | Hill’s Pet ",
+            " | Hills' Pet",  " | Hills' Pet ",
+            " | Hill's Pets", " | Hill's Pets "
         ]
 
 def fix_pg_title(link):
@@ -39,7 +41,7 @@ def fix_pg_title(link):
             break
     else:
         print('ERROR', pg_title)
-        U_T_O.add(link)
+        URLS_TO_OPEN.add(link)
         return False
 
     fix_nav_title(link, no_save=True)

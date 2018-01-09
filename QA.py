@@ -4,13 +4,13 @@ import requests
 from bs4 import BeautifulSoup
 from qautils.screenshot import highlight
 from qautils.driver import start_driver, DRIVER
-from qautils.fixers import fix_pg_title, fix_nav_title, U_T_O
+from qautils.fixers import fix_pg_title, fix_nav_title, URLS_TO_OPEN
 from hillsqa.private_settings import CHROME_EXE_PATH, HILLS, AUTH, PROPERTY_LINK, DOMAIN
 
 
 start_driver()
 
-URLS_TO_OPEN = set()
+
 URLS_404 = set()
 
 
@@ -19,7 +19,7 @@ with open('urls.txt', 'r') as urls_file:
 
     for url in URL_LIST:
         print('\n\nTesting url:', URL_LIST.index(url) + 1, 'of', len(URL_LIST))
-        print('UTO:', len(URLS_TO_OPEN.union(U_T_O)), " , 404:", len(URLS_404))
+        print('UTO:', len(URLS_TO_OPEN), "| 404:", len(URLS_404))
         new_url = PROPERTY_LINK + url.split(PROPERTY_LINK[0:42], 1)[1].replace('.html?wcmmode=disabled', '')
         prod_site = requests.get(new_url, auth=AUTH)
         prod_soup = BeautifulSoup(prod_site.text, 'html.parser')
@@ -105,9 +105,8 @@ with open('urls.txt', 'r') as urls_file:
             else:
                 print('Description:', description)
 
-    UTO = URLS_TO_OPEN.union(U_T_O)
-    if UTO:
-        for url in UTO:
+    if URLS_TO_OPEN:
+        for url in URLS_TO_OPEN:
             webbrowser.get(CHROME_EXE_PATH).open_new_tab(url)
 
     if URLS_404:
