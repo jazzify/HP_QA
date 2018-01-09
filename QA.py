@@ -59,7 +59,8 @@ with open('urls.txt', 'r') as urls_file:
                     webbrowser.get(CHROME_EXE_PATH).open_new_tab(url)
                     webbrowser.get(CHROME_EXE_PATH).open_new_tab(new_url)
                 elif open_pg_title == 'c':
-                    DRIVER.get(new_url)
+                    if DRIVER.current_url is not new_url:
+                        DRIVER.get(new_url)
                     custom_pg_title = input('Please provide the page title: ')
                     custom_pg_title += HILLS
                     page_title_input = DRIVER.find_element_by_name('./pageTitle')
@@ -67,11 +68,13 @@ with open('urls.txt', 'r') as urls_file:
                     fix_nav_title(new_url)
 
             elif (not pg_title.endswith(HILLS)) and (not pg_title.endswith(f'{HILLS} ')):
-                DRIVER.get(new_url)
+                if DRIVER.current_url is not new_url:
+                    DRIVER.get(new_url)
                 fix_pg_title(new_url)
 
             elif nav_title == '' or not nav_title in pg_title:
-                DRIVER.get(new_url)
+                if DRIVER.current_url is not new_url:
+                    DRIVER.get(new_url)
                 fix_nav_title(new_url)
 
             else:
