@@ -1,9 +1,9 @@
 # HP_QA
 
 ### Installing
-1. First install [Python 3.6](https://www.python.org/downloads/)
+1. Install [Python 3.6](https://www.python.org/downloads/)
 
-2. Install all dependencys by open your console (CMD, POWERSHELL) and writing `pip install --upgrade -r requeriments.txt` this will download, install and upgrade the modules used for this script.
+2. Install all dependencies by open your console (CMD, POWERSHELL) and writing `pip install --upgrade -r requeriments.txt` this will download, install and upgrade the modules used for this script.
 
 ### Configuration
 Fill hillsqa/public\_settings.py and rename it to private_setting.py
